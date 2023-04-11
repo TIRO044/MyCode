@@ -1,0 +1,3 @@
+[submodule "VContainer"]
+	path = VContainer
+	url = https://github.com/hadashiA/VContainer.git
