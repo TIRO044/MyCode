@@ -102,48 +102,5 @@ namespace GBS.UI
             }
             _openList.Remove(ui);
         }
-
-        public static void SendMessageToOpenList(IUIMessage message)
-        {
-            foreach (var openedUI in _openList)
-            {
-                if (openedUI == null)
-                {
-                    continue;
-                }
-
-                openedUI.ReceiveMessage(message);
-            }
-        }
-
-        public static void SendMessageToChild(IUIMessage message, GameObject go)
-        {
-            var children = go.GetComponentsInChildren<UIBase>(includeInactive: true);
-            foreach (var uiBase in children)
-            {
-                if (uiBase == null)
-                {
-                    // 여기는 차라리 null날 확률이 적다
-                    continue;
-                }
-
-                uiBase.ReceiveMessage(message);
-            }
-        }
-
-        public static void SendMessageToParents(IUIMessage message, GameObject go)
-        {
-            var children = go.GetComponentsInParent<UIBase>(includeInactive: true);
-            foreach (var uiBase in children)
-            {
-                if (uiBase == null)
-                {
-                    // 여기는 차라리 null날 확률이 적다
-                    continue;
-                }
-
-                uiBase.ReceiveMessage(message);
-            }
-        }
     }
 }

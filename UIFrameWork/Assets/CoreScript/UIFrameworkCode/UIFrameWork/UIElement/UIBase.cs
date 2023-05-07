@@ -114,7 +114,6 @@ namespace GBS.UI
             transform.SetAsLastSibling();
         }
 
-        public virtual void ReceiveMessage(IUIMessage message) { }
         protected virtual void OnAwake() { }
         protected virtual void Enable() { }
 
