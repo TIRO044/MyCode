@@ -7,13 +7,13 @@ namespace GBS.UI
     using GameScene;
     using MVVM.View;
 
-    public class UIBase : View
+    public class UIElementBase : View
     {
         public GameScene.SceneType UISceneType { private set; get; }
 
         private GameObject Parent;
         // 굳이 이걸 두는 게 좋은 짓일까.. 
-        private readonly List<UIBase> _childElement = new ();
+        private readonly List<UIElementBase> _childElement = new ();
         private RectTransform _myRectTransform;
         private bool _active;
 
@@ -36,7 +36,7 @@ namespace GBS.UI
 
             if (Parent is not null)
             {
-                var parentUIBase = Parent.GetComponent<UIBase>();
+                var parentUIBase = Parent.GetComponent<UIElementBase>();
                 if (parentUIBase is not null)
                 {
                     parentUIBase.RemoveChild(this);
@@ -51,7 +51,7 @@ namespace GBS.UI
             else
             {
                 Parent = parent;
-                var parentUI = Parent.GetComponent<UIBase>();
+                var parentUI = Parent.GetComponent<UIElementBase>();
                 if (parentUI is not null)
                 {
                     parentUI.AddChild(this);
@@ -66,37 +66,37 @@ namespace GBS.UI
             UISceneType = sceneType;
         }
 
-        private void AddChild(UIBase uiBase)
+        private void AddChild(UIElementBase uiElementBase)
         {
-            if (uiBase is null)
+            if (uiElementBase is null)
             {
                 Debug.Log("ui is null");
                 return;
             }
 
-            if (_childElement.Contains(uiBase))
+            if (_childElement.Contains(uiElementBase))
             {
-                Debug.Log($"already contain ui {uiBase.name}");
+                Debug.Log($"already contain ui {uiElementBase.name}");
                 return;
             }
 
-            _childElement.Add(uiBase);
+            _childElement.Add(uiElementBase);
         }
 
-        private void RemoveChild(UIBase uiBase)
+        private void RemoveChild(UIElementBase uiElementBase)
         {
-            if (uiBase is null)
+            if (uiElementBase is null)
             {
                 Debug.Log("ui is null");
                 return;
             }
 
-            if (_childElement.Contains(uiBase) == false)
+            if (_childElement.Contains(uiElementBase) == false)
             {
                 return;
             }
 
-            _childElement.Remove(uiBase);
+            _childElement.Remove(uiElementBase);
         }
 
         public void Open()
@@ -131,13 +131,13 @@ namespace GBS.UI
         void OnDestroy()
         {
             // 직접 호출하지말고 콜백으로 하자
-            UIManager.OnDestroy(this);
+            UIElementManager.OnDestroy(this);
         }
 
         public string Key { private set; get; }
-        private Action<string, UIBase> OnReturn { set; get; }
+        private Action<string, UIElementBase> OnReturn { set; get; }
         
-        public void SetReturnCallBack(string key, Action<string, UIBase> onReturn)
+        public void SetReturnCallBack(string key, Action<string, UIElementBase> onReturn)
         {
             Key = key;
             OnReturn = onReturn;

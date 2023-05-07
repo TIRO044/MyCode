@@ -2,7 +2,7 @@ namespace MVVM.View
 {
     using GBS.UI;
     
-    public class TempSlotView : UIBase
+    public class TempSlotView : UIElementBase
     {
         protected override void OnAwake()
         {

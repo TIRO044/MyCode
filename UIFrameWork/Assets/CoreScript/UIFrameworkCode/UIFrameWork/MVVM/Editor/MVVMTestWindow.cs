@@ -30,14 +30,14 @@ namespace MVVM.View.Editor
         private EditorInvoker _testInvoker = new EditorInvoker();
         void OnGUI()
         {
-            if (UIManager.OpenedList == null || UIManager.OpenedList.Count == 0)
+            if (UIElementManager.OpenedList == null || UIElementManager.OpenedList.Count == 0)
                 return;
 
             GUIStyle style = new GUIStyle(GUI.skin.box);
             style.alignment = TextAnchor.MiddleLeft;
             style.fontSize = 80;
             
-            foreach (var openedUi in UIManager.OpenedList)
+            foreach (var openedUi in UIElementManager.OpenedList)
             {
                 foreach (var kv in openedUi.ViewModelProperties)
                 {

@@ -7,11 +7,11 @@ namespace GBS.UI
 {
     using GameScene;
     
-    public static class UIManager
+    public static class UIElementManager
     {
-        private static readonly List<UIBase> _openList = new();
-        public static IReadOnlyList<UIBase> OpenedList => _openList;
-        public static UIBase Open(GameObject parent, GameScene.SceneType sceneType, string name)
+        private static readonly List<UIElementBase> _openList = new();
+        public static IReadOnlyList<UIElementBase> OpenedList => _openList;
+        public static UIElementBase Open(GameObject parent, GameScene.SceneType sceneType, string name)
         {
             if (UIInstanceManager.Instance == null)
             {
@@ -34,31 +34,31 @@ namespace GBS.UI
             return ui;
         }
 
-        public static bool Close(UIBase ui)
+        public static bool Close(UIElementBase uiElement)
         {
-            if (_openList.Contains(ui) == false)
+            if (_openList.Contains(uiElement) == false)
             {
                 return false;
             }
 
-            if (ui == null)
+            if (uiElement == null)
             {
                 return false;
             }
 
-            ui.Close();
-            ui.Return();
+            uiElement.Close();
+            uiElement.Return();
 
             if (UIInstanceManager.Instance != null)
             {
-                UIInstanceManager.Instance?.ReturnInstance(ui);
+                UIInstanceManager.Instance?.ReturnInstance(uiElement);
             }
             else
             {
                 Debug.LogWarning($"[{nameof(CloseFromAbove)}] UIInstanceManager is null");
             }
             
-            _openList.Remove(ui);
+            _openList.Remove(uiElement);
             return true;
         }
 
@@ -89,18 +89,18 @@ namespace GBS.UI
             }
         }
 
-        public static void OnDestroy(UIBase ui)
+        public static void OnDestroy(UIElementBase uiElement)
         {
             if (UIInstanceManager.Instance != null)
             {
-                UIInstanceManager.Instance?.RemoveInstance(ui);
+                UIInstanceManager.Instance?.RemoveInstance(uiElement);
             }
   
             if (_openList.Count == 0)
             {
                 return;
             }
-            _openList.Remove(ui);
+            _openList.Remove(uiElement);
         }
     }
 }

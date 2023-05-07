@@ -116,14 +116,14 @@ public class TestGUI : MonoBehaviour
             GUILayout.Label("UI List", style);
             if (GUILayout.Button(text: $"������ ���� �ϳ��� �ݱ�"))
             {
-                UIManager.CloseFromAbove();
+                UIElementManager.CloseFromAbove();
             }
 
             using (var scrollViewScope = new GUILayout.ScrollViewScope(scrollPosition1, GUILayout.Width(190), GUILayout.Height(100)))
             {
                 scrollPosition1 = scrollViewScope.scrollPosition;
 
-                foreach (var uiPrefab in UIManager.OpenedList)
+                foreach (var uiPrefab in UIElementManager.OpenedList)
                 {
                     if (GUILayout.Button(text: $"{uiPrefab.name}"))
                     {

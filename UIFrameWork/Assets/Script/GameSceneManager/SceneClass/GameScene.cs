@@ -18,7 +18,7 @@ namespace GBS.GameScene
 
             foreach (var uiPath in UIPathArrToLoadOnStart)
             {
-                UIManager.Open(_uiCanvasGameObject, sceneType: SceneType, uiPath);
+                UIElementManager.Open(_uiCanvasGameObject, sceneType: SceneType, uiPath);
             }
         }
     }

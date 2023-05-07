@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameStartView : UIBase
+public class GameStartView : UIElementBase
 {
     public Button StartButton;
 
@@ -17,6 +17,6 @@ public class GameStartView : UIBase
 
     private void OnClick()
     {
-        UIManager.Close(this);
+        UIElementManager.Close(this);
     }
 }

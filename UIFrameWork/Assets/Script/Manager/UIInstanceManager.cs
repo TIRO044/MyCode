@@ -4,12 +4,12 @@
     using UnityEngine;
     using UI;
     
-    public class UIInstanceManager : MonobehaviourSingleton<UIInstanceManager>, IInstanceManager<UIBase>
+    public class UIInstanceManager : MonobehaviourSingleton<UIInstanceManager>, IInstanceManager<UIElementBase>
     {
         private static readonly string _name = $"[{nameof(UIInstanceManager)}]";
             
-        private readonly IObjectLoader<UIBase> _uiInstanceLoader = new ObjectLoader<UIBase>(
-            resourcePool: () => new ObjectPool<UIBase>(),
+        private readonly IObjectLoader<UIElementBase> _uiInstanceLoader = new ObjectLoader<UIElementBase>(
+            resourcePool: () => new ObjectPool<UIElementBase>(),
             objectFactory: (key, action) =>
             {
                 var resource = Resources.Load(key);
@@ -25,34 +25,34 @@
                     return null;
                 }
 
-                if (gob.TryGetComponent(typeof(UIBase), out var component) == false)
+                if (gob.TryGetComponent(typeof(UIElementBase), out var component) == false)
                 {
                     Debug.LogWarning($"{_name} UIBase is null _ {key}");
                     return null;
                 }
 
                 var instance = Instantiate(gob);
-                var uiBase = instance.GetComponent<UIBase>();
+                var uiBase = instance.GetComponent<UIElementBase>();
                 uiBase.SetReturnCallBack(key, action);
                 
                 return uiBase;
             });
 
-        public UIBase GetInstance(string name, Action onComplete)
+        public UIElementBase GetInstance(string name, Action onComplete)
         {
             return _uiInstanceLoader.Get(name, onComplete);
         }
 
-        public void ReturnInstance(UIBase uiBase)
+        public void ReturnInstance(UIElementBase uiElementBase)
         {
-            uiBase.SetParent(Instance.gameObject);
+            uiElementBase.SetParent(Instance.gameObject);
 
-            _uiInstanceLoader.Return(uiBase.Key, uiBase);
+            _uiInstanceLoader.Return(uiElementBase.Key, uiElementBase);
         }
 
-        public void RemoveInstance(UIBase uiBase)
+        public void RemoveInstance(UIElementBase uiElementBase)
         {
-            _uiInstanceLoader.Remove(uiBase.Key, uiBase);
+            _uiInstanceLoader.Remove(uiElementBase.Key, uiElementBase);
         }
     }
 }
