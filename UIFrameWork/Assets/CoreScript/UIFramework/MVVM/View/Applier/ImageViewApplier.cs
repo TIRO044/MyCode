@@ -1,11 +1,10 @@
-using GBS.Resource;
+using System;
+using Script.Manager;
+using UnityEngine;
+using UnityEngine.UI;
 
-namespace MVVM.View
+namespace CoreScript.UIFramework.MVVM.View.Applier
 {
-    using System;
-    using UnityEngine;
-    using UnityEngine.UI;
-    
     [Serializable]
     public class ImageViewApplier : ViewApplier
     {

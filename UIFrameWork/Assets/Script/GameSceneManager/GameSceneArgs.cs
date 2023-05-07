@@ -1,4 +1,4 @@
-namespace GBS.GameScene
+namespace Script.GameSceneManager
 {
     public class GameScene
     {

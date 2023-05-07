@@ -1,8 +1,8 @@
 
-namespace GBS.GameScene
-{
-    using UI;
+using CoreScript.UIFramework.UIElement;
 
+namespace Script.GameSceneManager.SceneClass
+{
     public class MainScene : SceneBase
     {
         public override void Init()

@@ -1,8 +1,9 @@
-namespace GBS.Resource
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace CoreScript.ObjectLoad
 {
-    using System;
-    using System.Collections.Generic;
-    using UnityEngine;
     using Object = UnityEngine.Object;
     
     public class ObjectLoader<T> : IObjectLoader<T> where T : Object

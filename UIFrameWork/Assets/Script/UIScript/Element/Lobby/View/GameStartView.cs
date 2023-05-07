@@ -1,22 +1,24 @@
-﻿using GBS.UI;
-using UnityEngine;
+﻿using CoreScript.UIFramework.UIElement;
 using UnityEngine.UI;
 
-public class GameStartView : UIElementBase
+namespace Script.UIScript.Element.Lobby.View
 {
-    public Button StartButton;
-
-    protected override void OnAwake()
+    public class GameStartView : UIElementBase
     {
-        StartButton = GetComponentInChildren<Button>(true);
-        if (StartButton != null)
+        public Button StartButton;
+
+        protected override void OnAwake()
         {
-            StartButton.onClick.AddListener(OnClick);
+            StartButton = GetComponentInChildren<Button>(true);
+            if (StartButton != null)
+            {
+                StartButton.onClick.AddListener(OnClick);
+            }
         }
-    }
 
-    private void OnClick()
-    {
-        UIElementManager.Close(this);
+        private void OnClick()
+        {
+            UIElementManager.Close(this);
+        }
     }
 }

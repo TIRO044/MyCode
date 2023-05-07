@@ -1,9 +1,11 @@
+using CoreScript.UIFramework.MVVM;
+using CoreScript.UIFramework.UIElement;
+using Script.UIScript.Element.Lobby.ViewModel;
+
 namespace MVVM.View.Editor
 {
     using UnityEngine;
     using UnityEditor;
-    using ViewModel;
-    using GBS.UI;
 
     public static class ViewModelExtension
     {

@@ -1,17 +1,16 @@
-namespace MVVM.View
-{
-    using ViewModel;
-    using System;
-    using System.Reflection;
-    using UnityEngine;
+using System;
+using System.Reflection;
+using UnityEngine;
 
+namespace CoreScript.UIFramework.MVVM.View
+{
     [Serializable]
     public class ViewApplier : MonoBehaviour
     {
         protected PropertyInfo _vmPropertyInfo;
         [SerializeField] public GameObject MyObject;
 
-        public ViewModel ViewModel { private set; get; }
+        public ViewModel.ViewModel ViewModel { private set; get; }
 
         public string Name
         {
@@ -31,7 +30,7 @@ namespace MVVM.View
             _vmPropertyInfo = propertyInfo;
         }
 
-        public void SetVm(ViewModel viewModel)
+        public void SetVm(ViewModel.ViewModel viewModel)
         {
             ViewModel = viewModel;
         }

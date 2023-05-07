@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using CoreScript.UIFramework.MVVM.View;
+using Script.GameSceneManager;
 using UnityEngine;
 
-namespace GBS.UI
+namespace CoreScript.UIFramework.UIElement
 {
-    using GameScene;
-    using MVVM.View;
-
     public class UIElementBase : View
     {
         public GameScene.SceneType UISceneType { private set; get; }

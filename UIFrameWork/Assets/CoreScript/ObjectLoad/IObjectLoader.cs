@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace GBS.Resource
+namespace CoreScript.ObjectLoad
 {
     public interface IObjectPool<T> where T : Object
     {

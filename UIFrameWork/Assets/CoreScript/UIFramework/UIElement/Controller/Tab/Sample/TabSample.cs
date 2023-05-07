@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace GBS.UI
+namespace CoreScript.UIFramework.UIElement.Controller.Tab.Sample
 {
     public class TabSample : MonoBehaviour, ITabController<TabSample>
     {

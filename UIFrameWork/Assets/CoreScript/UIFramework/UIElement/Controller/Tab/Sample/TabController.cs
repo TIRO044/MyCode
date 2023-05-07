@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GBS.UI
+namespace CoreScript.UIFramework.UIElement.Controller.Tab.Sample
 {
     public class TabsSample : MonoBehaviour
     {

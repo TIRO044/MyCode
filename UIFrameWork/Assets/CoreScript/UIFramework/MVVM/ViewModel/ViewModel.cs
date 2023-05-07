@@ -1,8 +1,8 @@
-namespace MVVM.ViewModel
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+namespace CoreScript.UIFramework.MVVM.ViewModel
 {
-    using System.ComponentModel;
-    using System.Runtime.CompilerServices;
-    
     public class ViewModel : INotifyPropertyChanged
     {
         #region PropertyChanged

@@ -1,9 +1,11 @@
-﻿namespace GBS.Resource
+﻿using System;
+using CoreScript.ObjectLoad;
+using CoreScript.Singleton;
+using CoreScript.UIFramework.UIElement;
+using UnityEngine;
+
+namespace Script.Manager
 {
-    using System;
-    using UnityEngine;
-    using UI;
-    
     public class UIInstanceManager : MonobehaviourSingleton<UIInstanceManager>, IInstanceManager<UIElementBase>
     {
         private static readonly string _name = $"[{nameof(UIInstanceManager)}]";

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using GBS.Scene;
-using GBS.UI;
+using CoreScript.UIFramework.UIElement;
+using Script.SceneLoaderScript;
 using UnityEngine;
 
-namespace GBS.GameScene
+namespace Script.GameSceneManager
 {
     public class SceneBase : MonoBehaviour
     {

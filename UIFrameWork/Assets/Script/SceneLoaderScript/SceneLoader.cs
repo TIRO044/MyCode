@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using CoreScript.Singleton;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace GBS.Scene
+namespace Script.SceneLoaderScript
 {
     public static class SceneNames
     {

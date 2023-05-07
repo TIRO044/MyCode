@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace GBS.GameScene
+namespace Script.GameSceneManager
 {
     public class GameSceneManager : MonoBehaviour
     {

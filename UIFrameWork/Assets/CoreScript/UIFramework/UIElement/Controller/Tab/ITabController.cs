@@ -1,8 +1,8 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-namespace GBS.UI
+namespace CoreScript.UIFramework.UIElement.Controller.Tab
 {
-    using UnityEngine.EventSystems;
     public interface ITabController<T> : IPointerClickHandler where T : MonoBehaviour
     {
         public delegate void OnPointerClickHandler(T monoBehaviour);

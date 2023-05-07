@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GBS.GameScene
+namespace Script.GameSceneManager
 {
     /// <summary>
     /// Start -> Finish ~~ ...

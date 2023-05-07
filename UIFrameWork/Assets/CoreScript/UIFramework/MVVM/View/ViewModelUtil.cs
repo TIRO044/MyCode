@@ -1,10 +1,9 @@
-﻿namespace MVVM.View
-{
-    using System;
-    using System.Linq;
-    using System.Reflection;
-    using ViewModel;
+﻿using System;
+using System.Linq;
+using System.Reflection;
 
+namespace CoreScript.UIFramework.MVVM.View
+{
     public static class ViewModelUtil
     {
         private static Assembly _assembly;
@@ -16,8 +15,8 @@
             {
                 if (_vmTypes == null)
                 {
-                    _assembly = Assembly.GetAssembly(typeof(ViewModel));
-                    _vmTypes = _assembly.GetTypes().Where(myType => myType.IsClass && myType.IsSubclassOf(typeof(ViewModel))).ToArray();
+                    _assembly = Assembly.GetAssembly(typeof(ViewModel.ViewModel));
+                    _vmTypes = _assembly.GetTypes().Where(myType => myType.IsClass && myType.IsSubclassOf(typeof(ViewModel.ViewModel))).ToArray();
                 }
                 return _vmTypes;
             }

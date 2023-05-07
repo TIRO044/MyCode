@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
-using GBS.Resource;
-using UnityEditor.TextCore.Text;
+using Script.GameSceneManager;
+using Script.Manager;
 using UnityEngine;
 
-namespace GBS.UI
+namespace CoreScript.UIFramework.UIElement
 {
-    using GameScene;
-    
     public static class UIElementManager
     {
         private static readonly List<UIElementBase> _openList = new();

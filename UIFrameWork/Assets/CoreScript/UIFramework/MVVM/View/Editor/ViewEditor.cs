@@ -1,3 +1,7 @@
+using CoreScript.UIFramework.MVVM.View;
+using CoreScript.UIFramework.MVVM.View.Applier;
+using CoreScript.UIFramework.MVVM.ViewModel;
+
 namespace MVVM.View.Editor
 {
     using System;
@@ -5,18 +9,17 @@ namespace MVVM.View.Editor
     using System.Linq;
     using UnityEngine;
     using UnityEngine.UI;
-    using ViewModel;
     using UnityEditor;
     using System.Reflection;
 
-    [CustomEditor(typeof(View), editorForChildClasses: true)]
+    [CustomEditor(typeof(CoreScript.UIFramework.MVVM.View.View), editorForChildClasses: true)]
     public class ViewEditor : Editor
     {
         private int _index;
         private string[] _viewModelTypeStr;
         private Assembly _asm;
 
-        private View _myView;
+        private CoreScript.UIFramework.MVVM.View.View _myView;
 
         void Awake()
         {
@@ -27,7 +30,7 @@ namespace MVVM.View.Editor
         {
             if (_myView == null)
             {
-                _myView = target as View;
+                _myView = target as CoreScript.UIFramework.MVVM.View.View;
                
                 var vmCls = GetViewModelClass();
                 for (var index = 0; index < vmCls.Length; index++)

@@ -1,7 +1,8 @@
-namespace MVVM.View
+using CoreScript.UIFramework.UIElement;
+using VContainerTest;
+
+namespace CoreScript.UIFramework.MVVM.View
 {
-    using GBS.UI;
-    
     public class TempSlotView : UIElementBase
     {
         protected override void OnAwake()

@@ -1,7 +1,7 @@
-namespace GBS.Resource
-{
-    using System;
+using System;
 
+namespace Script.Manager
+{
     // TODO : AsyncLoad
     public interface IInstanceManager<T>
     {

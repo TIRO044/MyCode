@@ -1,11 +1,11 @@
-namespace GBS.GameScene
-{
-    using UnityEngine;
-    using UnityEngine.SceneManagement;
-    using MVVM.View;
-    using Scene;
-    using UI;
+using CoreScript.UIFramework.MVVM.View;
+using CoreScript.UIFramework.UIElement;
+using Script.SceneLoaderScript;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
+namespace Script.GameSceneManager.SceneClass
+{
     public class LobbyScene : SceneBase
     {
         public override void Init()

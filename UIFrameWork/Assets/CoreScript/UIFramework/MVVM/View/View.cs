@@ -1,18 +1,18 @@
-namespace MVVM.View
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using CoreScript.UIFramework.SerializeDictionary;
+using UnityEngine;
+using VContainer;
+
+namespace CoreScript.UIFramework.MVVM.View
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using UnityEngine;
-    using VContainer;
-    using ViewModel;
-    
     // mono, lifeTime 어떤 걸 상속받을지 고민 중
     public class View : MonoBehaviour
     {
         [SerializeField] public SerializableDictionary<string, GameObject> ViewModelProperties = new();
         [SerializeField] public string ViewModelStr;
-        [ReadOnly(true)] public ViewModel MyViewModel { private set; get; }
+        [ReadOnly(true)] public ViewModel.ViewModel MyViewModel { private set; get; }
        
         public Type MyViewModelType { private set; get; }
 
@@ -45,7 +45,7 @@ namespace MVVM.View
                 return;
             }
             
-            MyViewModel = buildObj as ViewModel;
+            MyViewModel = buildObj as ViewModel.ViewModel;
             if (MyViewModel == null)
             {
                 Debug.LogError($"ViewModel casting fail");
@@ -100,7 +100,7 @@ namespace MVVM.View
             MyViewModelType = type;
         }
 
-        public ViewModel GetMyViewModel()
+        public ViewModel.ViewModel GetMyViewModel()
         {
             return MyViewModel;
         }

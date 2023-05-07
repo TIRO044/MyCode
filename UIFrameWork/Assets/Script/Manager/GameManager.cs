@@ -1,16 +1,16 @@
-﻿namespace GBS.GameManager {
+﻿using CoreScript.Singleton;
+using Script.GameSceneManager;
 
-    using GameScene;
-
+namespace Script.Manager {
     public class GameManager : MonobehaviourSingleton<GameManager> {
-        private GameSceneManager _gameSceneManager;
+        private GameSceneManager.GameSceneManager _gameSceneManager;
 
         public SceneBase Lobby;
         public SceneBase Main;
 
         void Awake()
         {
-            _gameSceneManager = gameObject.AddComponent<GameSceneManager>();
+            _gameSceneManager = gameObject.AddComponent<GameSceneManager.GameSceneManager>();
             if (_gameSceneManager != null) {
                 var lobby = Instantiate(Lobby);
                 _gameSceneManager.StartScene(lobby);

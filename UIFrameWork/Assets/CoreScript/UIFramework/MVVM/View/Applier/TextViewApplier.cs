@@ -1,9 +1,9 @@
-namespace MVVM.View
-{
-    using System;
-    using UnityEngine;
-    using UnityEngine.UI;
+using System;
+using UnityEngine;
+using UnityEngine.UI;
 
+namespace CoreScript.UIFramework.MVVM.View.Applier
+{
     [Serializable]
     public class TextViewApplier : ViewApplier
     {

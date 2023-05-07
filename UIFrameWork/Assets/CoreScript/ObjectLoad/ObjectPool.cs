@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GBS.Resource
+namespace CoreScript.ObjectLoad
 {
     public class ObjectPool<T> : IObjectPool<T> where T : Object
     {

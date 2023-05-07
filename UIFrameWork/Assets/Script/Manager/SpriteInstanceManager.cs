@@ -1,9 +1,11 @@
-namespace GBS.Resource
-{
-    using System;
-    using UnityEngine;
-    using System.Linq;
+using System;
+using System.Linq;
+using CoreScript.ObjectLoad;
+using CoreScript.Singleton;
+using UnityEngine;
 
+namespace Script.Manager
+{
     public class SpriteInstanceManager : MonobehaviourSingleton<SpriteInstanceManager>, IInstanceManager<Sprite>
     {  
         private static readonly string _name = $"[{nameof(UIInstanceManager)}]";
