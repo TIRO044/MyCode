@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using CoreScript.UIFramework.MVVM.View;
-using Script.GameSceneManager;
 using UnityEngine;
 
 namespace CoreScript.UIFramework.UIElement
