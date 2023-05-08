@@ -9,7 +9,7 @@ namespace CoreScript.UIFramework.UIElement
     {
         private static readonly List<UIElementBase> _openList = new();
         public static IReadOnlyList<UIElementBase> OpenedList => _openList;
-        public static UIElementBase Open(GameObject parent, GameScene.SceneType sceneType, string name)
+        public static UIElementBase Open(GameObject parent, string name)
         {
             if (UIInstanceManager.Instance == null)
             {
@@ -24,7 +24,6 @@ namespace CoreScript.UIFramework.UIElement
             }
 
             ui.SetParent(parent);
-            ui.SetSceneType(sceneType);
             ui.Open();
             ui.SetAsLastSibling();
 

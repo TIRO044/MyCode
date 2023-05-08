@@ -43,7 +43,7 @@ namespace Script.GameSceneManager.SceneClass
                     continue;
                 }
 
-                var uiBase = UIElementManager.Open(_uiCanvasGameObject, SceneType, uiPath);
+                var uiBase = UIElementManager.Open(_uiCanvasGameObject, uiPath);
                 if (uiBase is TempSlotView tsv)
                 {
                     tsv.Test_ChangeViewModelProperty("나는 이름이야", 1);

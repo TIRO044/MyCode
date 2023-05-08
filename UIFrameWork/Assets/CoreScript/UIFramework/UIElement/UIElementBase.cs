@@ -8,10 +8,7 @@ namespace CoreScript.UIFramework.UIElement
 {
     public class UIElementBase : View
     {
-        public GameScene.SceneType UISceneType { private set; get; }
-
         private GameObject Parent;
-        // 굳이 이걸 두는 게 좋은 짓일까.. 
         private readonly List<UIElementBase> _childElement = new ();
         private RectTransform _myRectTransform;
         private bool _active;
@@ -58,11 +55,6 @@ namespace CoreScript.UIFramework.UIElement
                 
                 _myRectTransform.SetParent(parent.transform, worldPositionStays: false);
             }
-        }
-
-        public void SetSceneType(GameScene.SceneType sceneType)
-        {
-            UISceneType = sceneType;
         }
 
         private void AddChild(UIElementBase uiElementBase)

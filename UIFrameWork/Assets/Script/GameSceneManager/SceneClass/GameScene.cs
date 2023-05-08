@@ -18,7 +18,7 @@ namespace Script.GameSceneManager.SceneClass
 
             foreach (var uiPath in UIPathArrToLoadOnStart)
             {
-                UIElementManager.Open(_uiCanvasGameObject, sceneType: SceneType, uiPath);
+                UIElementManager.Open(_uiCanvasGameObject, uiPath);
             }
         }
     }
