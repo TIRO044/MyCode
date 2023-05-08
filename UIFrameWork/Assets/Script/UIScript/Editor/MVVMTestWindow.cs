@@ -29,7 +29,6 @@ namespace MVVM.View.Editor
             window.Show();
         }
 
-        private EditorInvoker _testInvoker = new EditorInvoker();
         void OnGUI()
         {
             if (UIElementManager.OpenedList == null || UIElementManager.OpenedList.Count == 0)
