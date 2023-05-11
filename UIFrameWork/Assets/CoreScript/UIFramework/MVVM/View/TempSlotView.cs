@@ -7,7 +7,7 @@ namespace CoreScript.UIFramework.MVVM.View
     {
         protected override void OnAwake()
         {
-            if (MyViewModel is ViewModel1 vm1)
+            if (MyViewModelBase is ViewModel1 vm1)
             {
                 vm1.Name = "테스트얌";
                 vm1.Level = 23324;
@@ -16,7 +16,7 @@ namespace CoreScript.UIFramework.MVVM.View
 
         public void Test_ChangeViewModelProperty(string name, int level)
         {
-            if (MyViewModel is ViewModel1 vm1)
+            if (MyViewModelBase is ViewModel1 vm1)
             {
                 vm1.Name = name;
                 vm1.Level = level;

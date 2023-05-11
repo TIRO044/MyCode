@@ -42,14 +42,14 @@ namespace CoreScript.UIFramework.MVVM.View.Applier
                 return;
             }
 
-            if (ViewModel == null)
+            if (ViewModelBase == null)
             {
                 Debug.LogError("ViewModel is null");
                 return;
             }
 
             // ToString()?...
-            var value = _vmPropertyInfo.GetValue(ViewModel);
+            var value = _vmPropertyInfo.GetValue(ViewModelBase);
             if (value == null)
             {
                 Debug.LogError("vmPropertyInfo value is null");

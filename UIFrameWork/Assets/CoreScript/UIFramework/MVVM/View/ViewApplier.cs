@@ -10,13 +10,13 @@ namespace CoreScript.UIFramework.MVVM.View
         protected PropertyInfo _vmPropertyInfo;
         [SerializeField] public GameObject MyObject;
 
-        public ViewModel.ViewModel ViewModel { private set; get; }
+        public ViewModel.ViewModelBase ViewModelBase { private set; get; }
 
         public string Name
         {
             get
             {
-                if(ViewModel == null) return string.Empty;
+                if(ViewModelBase == null) return string.Empty;
 
                 return _vmPropertyInfo.Name;
             }
@@ -30,9 +30,9 @@ namespace CoreScript.UIFramework.MVVM.View
             _vmPropertyInfo = propertyInfo;
         }
 
-        public void SetVm(ViewModel.ViewModel viewModel)
+        public void SetVm(ViewModel.ViewModelBase viewModelBase)
         {
-            ViewModel = viewModel;
+            ViewModelBase = viewModelBase;
         }
     }
 }

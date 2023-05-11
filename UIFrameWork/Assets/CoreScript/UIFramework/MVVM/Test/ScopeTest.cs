@@ -1,11 +1,11 @@
-using CoreScript.UIFramework.MVVM.View;
 using CoreScript.UIFramework.MVVM.ViewModel;
 using UnityEditor;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
+using VContainerTest;
 
-namespace VContainerTest
+namespace CoreScript.UIFramework.MVVM
 {
     public class Test
     {
@@ -34,7 +34,7 @@ namespace VContainerTest
             Debug.Log(ob);
         }
     }
-    public class ViewModel1 : ViewModel
+    public class ViewModel1 : ViewModel.ViewModelBase
     {
         private string _name;
 
@@ -51,7 +51,7 @@ namespace VContainerTest
         public int Level { set; get; }
     }
 
-    public class ViewModel2 : ViewModel
+    public class ViewModel2 : ViewModelBase
     {
         public string Name { set; get; }
         public int Level { set; get; }
@@ -143,14 +143,14 @@ namespace VContainerTest
         public static void Test23()
         {
             var testGob = GameObject.Find("test");
-            var view = testGob.GetComponent<View>();
+            var view = testGob.GetComponent<View.ViewBase>();
 
             foreach (var kv in view.ViewApplierDic)
             {
                 Debug.Log($"{kv.Key}/{kv.Value.MyObject}");
             }
 
-            var vm1 = view.MyViewModel as ViewModel1;
+            var vm1 = view.MyViewModelBase as ViewModel1;
             vm1.Name = "test";
             vm1.Level = 12;
         }

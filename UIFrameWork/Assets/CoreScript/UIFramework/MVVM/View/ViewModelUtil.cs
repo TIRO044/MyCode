@@ -15,8 +15,8 @@ namespace CoreScript.UIFramework.MVVM.View
             {
                 if (_vmTypes == null)
                 {
-                    _assembly = Assembly.GetAssembly(typeof(ViewModel.ViewModel));
-                    _vmTypes = _assembly.GetTypes().Where(myType => myType.IsClass && myType.IsSubclassOf(typeof(ViewModel.ViewModel))).ToArray();
+                    _assembly = Assembly.GetAssembly(typeof(ViewModel.ViewModelBase));
+                    _vmTypes = _assembly.GetTypes().Where(myType => myType.IsClass && myType.IsSubclassOf(typeof(ViewModel.ViewModelBase))).ToArray();
                 }
                 return _vmTypes;
             }

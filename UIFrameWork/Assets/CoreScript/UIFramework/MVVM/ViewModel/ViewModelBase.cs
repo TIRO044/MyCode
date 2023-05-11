@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace CoreScript.UIFramework.MVVM.ViewModel
 {
-    public class ViewModel : INotifyPropertyChanged
+    public class ViewModelBase : INotifyPropertyChanged
     {
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

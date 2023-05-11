@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CoreScript.UIFramework.UIElement
 {
-    public class UIElementBase : View
+    public class UIElementBase : ViewBase
     {
         private GameObject Parent;
         private readonly List<UIElementBase> _childElement = new ();
