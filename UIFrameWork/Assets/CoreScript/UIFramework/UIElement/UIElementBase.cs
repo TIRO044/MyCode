@@ -7,7 +7,7 @@ namespace CoreScript.UIFramework.UIElement
 {
     public class UIElementBase : ViewBase
     {
-        private GameObject Parent;
+        private GameObject _parent;
         private readonly List<UIElementBase> _childElement = new ();
         private RectTransform _myRectTransform;
         private bool _active;
@@ -24,14 +24,14 @@ namespace CoreScript.UIFramework.UIElement
 
         public void SetParent(GameObject parent)
         {
-            if (Parent == parent)
+            if (this._parent == parent)
             {
                 return;
             }
 
-            if (Parent is not null)
+            if (this._parent is not null)
             {
-                var parentUIBase = Parent.GetComponent<UIElementBase>();
+                var parentUIBase = this._parent.GetComponent<UIElementBase>();
                 if (parentUIBase is not null)
                 {
                     parentUIBase.RemoveChild(this);
@@ -40,13 +40,13 @@ namespace CoreScript.UIFramework.UIElement
 
             if (parent is null)
             {
-                Parent = null;
+                this._parent = null;
                 _myRectTransform.SetParent(null, worldPositionStays: false);
             }
             else
             {
-                Parent = parent;
-                var parentUI = Parent.GetComponent<UIElementBase>();
+                this._parent = parent;
+                var parentUI = this._parent.GetComponent<UIElementBase>();
                 if (parentUI is not null)
                 {
                     parentUI.AddChild(this);
