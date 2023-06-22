@@ -59,21 +59,23 @@ namespace CoreScript.UIFramework.MVVM.View
             foreach (var propertyInfo in propertyInfos)
             {
                 var propertyName = propertyInfo.Name;
-                if (ViewModelProperties.TryGetValue(propertyName, out var target))
+                if (!ViewModelProperties.TryGetValue(propertyName, out var target))
                 {
-                    var applier = GetViewApplier(target);
-                    if( applier == null )
-                    {
-                        Debug.Log($"not found applier _ {propertyName}");
-                        continue;
-                    }
-
-                    applier.RegisterViewObject(target);
-                    applier.SetPropertyInfo(propertyInfo);
-                    applier.SetVm(MyViewModelBase);
-
-                    ViewApplierDic[propertyName] = applier;
+                    continue;
                 }
+                
+                var applier = GetViewApplier(target);
+                if( applier == null )
+                {
+                    Debug.Log($"not found applier _ {propertyName}");
+                    continue;
+                }
+
+                applier.RegisterViewObject(target);
+                applier.SetPropertyInfo(propertyInfo);
+                applier.SetVm(MyViewModelBase);
+
+                ViewApplierDic[propertyName] = applier;
             }
         }
 
@@ -107,7 +109,11 @@ namespace CoreScript.UIFramework.MVVM.View
 
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (!ViewApplierDic.TryGetValue(e.PropertyName, out var viewApplier)) return;
+            if (!ViewApplierDic.TryGetValue(e.PropertyName, out var viewApplier))
+            {
+                return;
+            }
+            
             if (viewApplier == null)
             {
                 Debug.LogError($"not found view applier");

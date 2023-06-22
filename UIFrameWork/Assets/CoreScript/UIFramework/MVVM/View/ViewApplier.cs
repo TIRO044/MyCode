@@ -12,16 +12,8 @@ namespace CoreScript.UIFramework.MVVM.View
 
         public ViewModel.ViewModelBase ViewModelBase { private set; get; }
 
-        public string Name
-        {
-            get
-            {
-                if(ViewModelBase == null) return string.Empty;
+        public string Name => ViewModelBase == null ? string.Empty : _vmPropertyInfo.Name;
 
-                return _vmPropertyInfo.Name;
-            }
-        }
-        
         public virtual void RegisterViewObject(GameObject viewObject) { }
         public virtual void ApplyVmToView() { }
 

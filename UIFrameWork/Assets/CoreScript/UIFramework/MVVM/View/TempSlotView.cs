@@ -1,5 +1,4 @@
 using CoreScript.UIFramework.UIElement;
-using VContainerTest;
 
 namespace CoreScript.UIFramework.MVVM.View
 {

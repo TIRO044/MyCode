@@ -13,11 +13,13 @@ namespace CoreScript.UIFramework.MVVM.View
         {
             get
             {
-                if (_vmTypes == null)
+                if (_vmTypes != null)
                 {
-                    _assembly = Assembly.GetAssembly(typeof(ViewModel.ViewModelBase));
-                    _vmTypes = _assembly.GetTypes().Where(myType => myType.IsClass && myType.IsSubclassOf(typeof(ViewModel.ViewModelBase))).ToArray();
+                    return _vmTypes;
                 }
+                
+                _assembly = Assembly.GetAssembly(typeof(ViewModel.ViewModelBase));
+                _vmTypes = _assembly.GetTypes().Where(myType => myType.IsClass && myType.IsSubclassOf(typeof(ViewModel.ViewModelBase))).ToArray();
                 return _vmTypes;
             }
         }
@@ -25,15 +27,7 @@ namespace CoreScript.UIFramework.MVVM.View
         public static Type GetType(string typeStr)
         {
             var name = typeStr.Split('.').Last();
-            foreach (var type in VMTypes)
-            {
-                if (type.Name == name)
-                {
-                    return type;
-                }
-            }
-
-            return null;
+            return VMTypes.FirstOrDefault(type => type.Name == name);
         }
     }
 }
