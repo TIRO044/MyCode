@@ -25,16 +25,8 @@ namespace Script.Manager
                     return null;
                 }
 
-                object targetSprite = null;
-                foreach (var o in originalResourceTest)
-                {
-                    if (o.name == spriteName)
-                    {
-                        targetSprite = o;
-                        break;
-                    }
-                }
-                
+                object targetSprite = originalResourceTest.FirstOrDefault(o => o.name == spriteName);
+
                 if (targetSprite is null)
                 {
                     Debug.LogError($"{_name} Resource load fail _ {key}");
