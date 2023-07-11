@@ -77,7 +77,7 @@ namespace CoreScript.UIFramework.UIElement
 
             if (UIInstanceManager.Instance != null)
             {
-                UIInstanceManager.Instance?.ReturnInstance(closeTarget);
+                UIInstanceManager.Instance.ReturnInstance(closeTarget);
             }
             else
             {
@@ -89,7 +89,7 @@ namespace CoreScript.UIFramework.UIElement
         {
             if (UIInstanceManager.Instance != null)
             {
-                UIInstanceManager.Instance?.RemoveInstance(uiElement);
+                UIInstanceManager.Instance.RemoveInstance(uiElement);
             }
   
             if (_openList.Count == 0)
