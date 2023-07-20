@@ -5,28 +5,28 @@ using UnityEngine;
 
 namespace JobTest
 {
-    public static class JobEventHandler
+    public static class JobEventHandler<T> where T : struct
     {
-        private static Dictionary<int, object> _jobs = new Dictionary<int, object>();
+        private static Dictionary<int, IJobResult<T>> _jobs = new Dictionary<int, IJobResult<T>>();
 
         private static int _handle;
         
-        public static int Register(IJobImpl jobImpl)
+        public static int Register(IJobResult<T> e)
         {
             var handle = _handle;
-            _jobs.Add(handle, jobImpl);
+            _jobs.Add(handle, e);
             _handle++;
             return handle;
         }
 
-        public static T GetCallBack<T>(int handle) where T : class
+        public static T GetCallBack<T>(int handle) where T : struct
         {
             if(_jobs.TryGetValue(handle, out var e))
             {
                 return (T)e;
             }
 
-            return null;
+            return default;
         } 
     }
 
@@ -34,17 +34,17 @@ namespace JobTest
     {
         void AddEvent();
         void RemoveEvent();
-
-        void Excute();
-        
         int Handle { get; }
     }
-    
-    public class JobEventManagerTest : IJobImpl
+
+    public class JobEventManagerTest<T> : IJobImpl where T : struct
     {
+        private readonly HashSet<CallBack.DataDelegate<IJobResult<T>>> _delegate;
+        
         public JobEventManagerTest()
         {
-            Handle = JobEventHandler.Register(this);
+            // hm..
+            // Handle = JobEventHandler<T>.Register(new CallBack.DataDelegate2<IJobResult<T>>(Excute));
         }
 
         public void AddEvent()
@@ -55,8 +55,12 @@ namespace JobTest
         {
         }
 
-        public void Excute()
+        public void Excute(IJobResult<T> jobResult)
         {
+            foreach (var t in _delegate)
+            {
+                t(jobResult);
+            }
         }
 
         public int Handle { get; private set; }
@@ -65,6 +69,11 @@ namespace JobTest
     public class Test
     {
         
+    }
+
+    public struct JobResultTest
+    {
+        public int T;
     }
     
     public class CallBack
