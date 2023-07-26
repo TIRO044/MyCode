@@ -107,7 +107,7 @@ namespace CoreScript.UIFramework.UIElement
         protected virtual void OnAwake() { }
         protected virtual void Enable() { }
 
-        protected override void BindAfter()
+        protected override void OnPostProcessBinding()
         {
             OnAwake();
         }

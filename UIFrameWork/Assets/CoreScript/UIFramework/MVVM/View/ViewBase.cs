@@ -4,6 +4,7 @@ using System.ComponentModel;
 using CoreScript.UIFramework.SerializeDictionary;
 using UnityEngine;
 using VContainer;
+using VContainer.Unity;
 
 namespace CoreScript.UIFramework.MVVM.View
 {
@@ -36,7 +37,7 @@ namespace CoreScript.UIFramework.MVVM.View
 
             MyViewModelType = type;
 
-            _builder.Register(MyViewModelType, Lifetime.Scoped);
+            var container = _builder.Register(MyViewModelType, Lifetime.Scoped);
             var resolver = _builder.Build();
             var buildObj = resolver.Resolve(MyViewModelType);
             if (buildObj == null)
@@ -126,9 +127,9 @@ namespace CoreScript.UIFramework.MVVM.View
         private void Awake()
         {
             BindViewModel();
-            BindAfter();
+            OnPostProcessBinding();
         }
 
-        protected virtual void BindAfter() { }
+        protected virtual void OnPostProcessBinding() { }
     }
 }
