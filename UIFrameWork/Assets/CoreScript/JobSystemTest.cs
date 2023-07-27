@@ -77,8 +77,8 @@ namespace JobTest
         // 결과만 invoke
         public void Execute()
         {
-            var callback = JobEventHandler.GetCallBack<CallBack2.DataDelegate2<T>>(EventHandle);
-            callback.Invoke(Result);
+            // var callback = JobEventHandler.GetCallBack<CallBack2.DataDelegate2<T>>(EventHandle);
+            // callback.Invoke(Result);
         }
 
         public bool IsDone()
