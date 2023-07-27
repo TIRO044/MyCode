@@ -4,7 +4,7 @@ using CoreScript.ObjectLoad;
 using CoreScript.Singleton;
 using UnityEngine;
 
-namespace Script.Manager
+namespace CoreScript.InstanceManager
 {
     public class SpriteInstanceManager : MonobehaviourSingleton<SpriteInstanceManager>, IInstanceManager<Sprite>
     {  

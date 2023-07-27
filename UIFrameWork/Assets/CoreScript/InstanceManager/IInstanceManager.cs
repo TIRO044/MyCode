@@ -1,6 +1,6 @@
 using System;
 
-namespace Script.Manager
+namespace CoreScript.InstanceManager
 {
     // TODO : AsyncLoad
     public interface IInstanceManager<T>

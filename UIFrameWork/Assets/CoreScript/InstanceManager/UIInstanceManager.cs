@@ -4,7 +4,7 @@ using CoreScript.Singleton;
 using CoreScript.UIFramework.UIElement;
 using UnityEngine;
 
-namespace Script.Manager
+namespace CoreScript.InstanceManager
 {
     public class UIInstanceManager : MonobehaviourSingleton<UIInstanceManager>, IInstanceManager<UIElementBase>
     {

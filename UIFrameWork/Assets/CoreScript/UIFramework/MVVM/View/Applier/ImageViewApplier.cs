@@ -1,5 +1,5 @@
 using System;
-using Script.Manager;
+using CoreScript.InstanceManager;
 using UnityEngine;
 using UnityEngine.UI;
 

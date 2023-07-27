@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Script.Manager;
+using CoreScript.InstanceManager;
 using UnityEngine;
 
 namespace CoreScript.UIFramework.UIElement
