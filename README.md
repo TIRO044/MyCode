@@ -33,7 +33,11 @@ UI 뿐만 아니라, 아웃 게임 프레임워크를 제작 중 입니다. (좋
 
 ### Text
 
+![img-1](https://github.com/TIRO044/MyCode/assets/54140806/fe0f7030-00a2-4e84-a361-5a847fbc983f)
 
+<br>
 
 ### Image
 
+
+![img-2](https://github.com/TIRO044/MyCode/assets/54140806/e5a58053-198f-45d1-954e-0fb0b8cafbb4)
