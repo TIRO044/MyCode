@@ -20,3 +20,20 @@ UI 뿐만 아니라, 아웃 게임 프레임워크를 제작 중 입니다. (좋
  - VContainer로 할당된 ViewModel의 프로퍼티가 변할 때, View에서 동작할 동작을 처리합니다.
  ### :cd: Model (미구현)
  - Model은 비즈니스 로직과 관련이 깊어서, 좀 더 코어한 부분작업할 때 추가할 예정
+
+<br>
+<br>
+
+## View에 ViewModel 바인딩
+
+![img](https://github.com/TIRO044/MyCode/assets/54140806/18128a16-7425-4bf8-b2e4-87c9fba04f86)
+
+
+## View Type
+
+### Text
+
+
+
+### Image
+
