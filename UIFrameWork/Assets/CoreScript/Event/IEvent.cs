@@ -1,7 +1,11 @@
 
+using System.Collections.Generic;
+
 public class CallBackDelegate
 {
-    delegate void ReadonlyCallBack(in DefaultCallBack);
+    public delegate void ReadonlyCallBack(in DefaultCallBack);
+
+    public delegate void CallBack();
 }
 
 public struct DefaultCallBack
@@ -9,8 +13,14 @@ public struct DefaultCallBack
     public object obj;
 }
 
-public interface IEvent
+public class TempCallBack
 {
+    private List<CallBackDelegate.ReadonlyCallBack> _callBackConatiner = new List<CallBackDelegate.ReadonlyCallBack>();
+
+    public void AddCallBack()
+    {
+        
+    }
 }
 
 public interface IEventContainer
@@ -20,11 +30,13 @@ public interface IEventContainer
 
 public class EventContainer
 {
-    public Dictionary<int, IEvent> _eventDic = new Dictionary<int, IEvent>();
+    public Dictionary<int, TempCallBack> _eventDic = new Dictionary<int, TempCallBack>();
 
-    public void Register()
+    private volatile int _count;
+    
+    
+    public void RegisterCallBack()
     {
         
     }
-
 }
