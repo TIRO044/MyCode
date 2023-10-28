@@ -1,5 +1,5 @@
 using System;
-using Script.Manager;
+using CoreScript.InstanceManager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,13 +43,13 @@ namespace CoreScript.UIFramework.MVVM.View.Applier
                 return;
             }
             
-            if (ViewModel is null)
+            if (ViewModelBase is null)
             {
                 Debug.LogError("Not found ViewModel");
                 return;
             }
             
-            var value = _vmPropertyInfo.GetValue(ViewModel);
+            var value = _vmPropertyInfo.GetValue(ViewModelBase);
             if(value is null)
             {
                 Debug.LogWarning("_vmPropertyInfo value is null");

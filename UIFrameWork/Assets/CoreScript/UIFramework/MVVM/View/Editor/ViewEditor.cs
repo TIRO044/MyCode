@@ -12,35 +12,35 @@ namespace MVVM.View.Editor
     using UnityEditor;
     using System.Reflection;
 
-    [CustomEditor(typeof(CoreScript.UIFramework.MVVM.View.View), editorForChildClasses: true)]
+    [CustomEditor(typeof(CoreScript.UIFramework.MVVM.View.ViewBase), editorForChildClasses: true)]
     public class ViewEditor : Editor
     {
         private int _index;
         private string[] _viewModelTypeStr;
         private Assembly _asm;
 
-        private CoreScript.UIFramework.MVVM.View.View _myView;
+        private CoreScript.UIFramework.MVVM.View.ViewBase _myViewBase;
 
         void Awake()
         {
-            _asm = Assembly.GetAssembly(typeof(ViewModel));
+            _asm = Assembly.GetAssembly(typeof(ViewModelBase));
         }
 
         public override void OnInspectorGUI()
         {
-            if (_myView == null)
+            if (_myViewBase == null)
             {
-                _myView = target as CoreScript.UIFramework.MVVM.View.View;
+                _myViewBase = target as CoreScript.UIFramework.MVVM.View.ViewBase;
                
                 var vmCls = GetViewModelClass();
                 for (var index = 0; index < vmCls.Length; index++)
                 {
                     var vmType = vmCls[index].ToString();
-                    if (vmType == _myView.ViewModelStr)
+                    if (vmType == _myViewBase.ViewModelStr)
                     {
                         _index = index;
                         
-                        Log($"My ViewModel Type : {_myView.MyViewModelType}");
+                        Log($"My ViewModel Type : {_myViewBase.MyViewModelType}");
                         Log($"My Index : {_index}");
 
                         break;
@@ -111,13 +111,13 @@ namespace MVVM.View.Editor
         {
             var types = _asm.GetTypes();
             return types.Where(myType => 
-                myType.IsClass && myType.IsSubclassOf(typeof(ViewModel))).ToArray();
+                myType.IsClass && myType.IsSubclassOf(typeof(ViewModelBase))).ToArray();
         }
 
         private string[] GetViewModelStringArray()
         {
             var types = _asm.GetTypes();
-            return types.Where(myType => myType.IsClass && myType.IsSubclassOf(typeof(ViewModel))).Select(x => x.ToString()).ToArray();
+            return types.Where(myType => myType.IsClass && myType.IsSubclassOf(typeof(ViewModelBase))).Select(x => x.ToString()).ToArray();
         }
 
         private List<GameObject> _tempGobList = new();
@@ -134,11 +134,11 @@ namespace MVVM.View.Editor
             var targetVm = vmCls[_index];
             var vmString = targetVm.ToString();
 
-            if (_myView.ViewModelStr != vmString)
+            if (_myViewBase.ViewModelStr != vmString)
             { 
-                _myView.SetViewModelType(targetVm);
-                _myView.ViewModelStr = vmString;
-                _myView.ViewModelProperties.Clear();
+                _myViewBase.SetViewModelType(targetVm);
+                _myViewBase.ViewModelStr = vmString;
+                _myViewBase.ViewModelProperties.Clear();
                 _tempGobList.Clear();
                 
                 _change = true;
@@ -148,7 +148,7 @@ namespace MVVM.View.Editor
             
             GUILayout.BeginHorizontal();
             {
-                GUILayout.Label($"ViewModel Str : [ {_myView.ViewModelStr} ]");
+                GUILayout.Label($"ViewModel Str : [ {_myViewBase.ViewModelStr} ]");
             }
             GUILayout.EndHorizontal();
 
@@ -157,15 +157,15 @@ namespace MVVM.View.Editor
             foreach (var p in targetViewModelProperties)
             {
                 var name = p.Name;
-                if (_myView.ViewModelProperties.ContainsKey(name) == false)
+                if (_myViewBase.ViewModelProperties.ContainsKey(name) == false)
                 {
-                    _myView.ViewModelProperties.Add(name, null);
+                    _myViewBase.ViewModelProperties.Add(name, null);
                 }
             }
 
             var changedKv = new ValueTuple<string, GameObject>();
 
-            foreach (var bridgeKv in _myView.ViewModelProperties)
+            foreach (var bridgeKv in _myViewBase.ViewModelProperties)
             {
                 var key = bridgeKv.Key;
                 var gob = (GameObject)EditorGUILayout.ObjectField($"{key}", bridgeKv.Value, typeof(GameObject), true);
@@ -179,7 +179,7 @@ namespace MVVM.View.Editor
 
             if (string.IsNullOrEmpty(changedKv.Item1) == false && changedKv.Item2 != null)
             {
-                _myView.ViewModelProperties[changedKv.Item1] = changedKv.Item2;
+                _myViewBase.ViewModelProperties[changedKv.Item1] = changedKv.Item2;
                 Debug.Log($"Change Value key : {changedKv.Item1} _ value : {changedKv.Item2}");
 
                 var applier = AddViewApplierComponent(changedKv.Item2);

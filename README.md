@@ -1,4 +1,4 @@
-# **Unity_UGUIFrameWork**
+# **MVVM for Unity**
 
 UI 뿐만 아니라, 아웃 게임 프레임워크를 제작 중 입니다. (좋은 생각이 들었을 때 심심풀이 겸)
 
@@ -19,7 +19,29 @@ UI 뿐만 아니라, 아웃 게임 프레임워크를 제작 중 입니다. (좋
  - View와 ViewModel의 의존성을 제거하기 위해 도입한 개념입니다.
  - VContainer로 할당된 ViewModel의 프로퍼티가 변할 때, View에서 동작할 동작을 처리합니다.
  ### :cd: Model (미구현)
- - Model의 구현은 제 생각에 좀 모호한 경계에 있다 생각해서 좀 더 좋은 생각이 들 때 작업해볼 생각 입니다.
+ - Model은 비즈니스 로직과 관련이 깊어서, 좀 더 코어한 부분작업할 때 추가할 예정
 
- ### 해당 깃 관련 필자의 포스팅
- - https://jhjrepository.tistory.com/13
+<br>
+<br>
+
+## View에 ViewModel 바인딩
+
+![img](https://github.com/TIRO044/MyCode/assets/54140806/18128a16-7425-4bf8-b2e4-87c9fba04f86)
+
+
+## View Type
+
+바인딩된 ViewModel 값을 변화하였을 때, 예시
+
+<br>
+
+### Text
+
+![img-1](https://github.com/TIRO044/MyCode/assets/54140806/fe0f7030-00a2-4e84-a361-5a847fbc983f)
+
+<br>
+
+### Image
+
+
+![img-2](https://github.com/TIRO044/MyCode/assets/54140806/e5a58053-198f-45d1-954e-0fb0b8cafbb4)

@@ -1,5 +1,5 @@
 namespace Script.UIScript.Element.Lobby.ViewModel{
-    public class GameStartViewModel : CoreScript.UIFramework.MVVM.ViewModel.ViewModel
+    public class GameStartViewModelBase : CoreScript.UIFramework.MVVM.ViewModel.ViewModelBase
     {
         private string _lobbyTitle = "test";
         public string LobbyTitle

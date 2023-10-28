@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using Script.GameSceneManager;
-using Script.Manager;
+using CoreScript.InstanceManager;
 using UnityEngine;
 
 namespace CoreScript.UIFramework.UIElement
@@ -9,7 +8,7 @@ namespace CoreScript.UIFramework.UIElement
     {
         private static readonly List<UIElementBase> _openList = new();
         public static IReadOnlyList<UIElementBase> OpenedList => _openList;
-        public static UIElementBase Open(GameObject parent, GameScene.SceneType sceneType, string name)
+        public static UIElementBase Open(GameObject parent, string name)
         {
             if (UIInstanceManager.Instance == null)
             {
@@ -24,7 +23,6 @@ namespace CoreScript.UIFramework.UIElement
             }
 
             ui.SetParent(parent);
-            ui.SetSceneType(sceneType);
             ui.Open();
             ui.SetAsLastSibling();
 
@@ -79,7 +77,7 @@ namespace CoreScript.UIFramework.UIElement
 
             if (UIInstanceManager.Instance != null)
             {
-                UIInstanceManager.Instance?.ReturnInstance(closeTarget);
+                UIInstanceManager.Instance.ReturnInstance(closeTarget);
             }
             else
             {
@@ -91,7 +89,7 @@ namespace CoreScript.UIFramework.UIElement
         {
             if (UIInstanceManager.Instance != null)
             {
-                UIInstanceManager.Instance?.RemoveInstance(uiElement);
+                UIInstanceManager.Instance.RemoveInstance(uiElement);
             }
   
             if (_openList.Count == 0)

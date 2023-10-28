@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using CoreScript.UIFramework.MVVM.View;
-using Script.GameSceneManager;
 using UnityEngine;
 
 namespace CoreScript.UIFramework.UIElement
 {
-    public class UIElementBase : View
+    public class UIElementBase : ViewBase
     {
-        public GameScene.SceneType UISceneType { private set; get; }
-
-        private GameObject Parent;
-        // 굳이 이걸 두는 게 좋은 짓일까.. 
+        private GameObject _parent;
         private readonly List<UIElementBase> _childElement = new ();
         private RectTransform _myRectTransform;
         private bool _active;
@@ -28,14 +24,14 @@ namespace CoreScript.UIFramework.UIElement
 
         public void SetParent(GameObject parent)
         {
-            if (Parent == parent)
+            if (this._parent == parent)
             {
                 return;
             }
 
-            if (Parent is not null)
+            if (this._parent is not null)
             {
-                var parentUIBase = Parent.GetComponent<UIElementBase>();
+                var parentUIBase = this._parent.GetComponent<UIElementBase>();
                 if (parentUIBase is not null)
                 {
                     parentUIBase.RemoveChild(this);
@@ -44,13 +40,13 @@ namespace CoreScript.UIFramework.UIElement
 
             if (parent is null)
             {
-                Parent = null;
+                this._parent = null;
                 _myRectTransform.SetParent(null, worldPositionStays: false);
             }
             else
             {
-                Parent = parent;
-                var parentUI = Parent.GetComponent<UIElementBase>();
+                this._parent = parent;
+                var parentUI = this._parent.GetComponent<UIElementBase>();
                 if (parentUI is not null)
                 {
                     parentUI.AddChild(this);
@@ -58,11 +54,6 @@ namespace CoreScript.UIFramework.UIElement
                 
                 _myRectTransform.SetParent(parent.transform, worldPositionStays: false);
             }
-        }
-
-        public void SetSceneType(GameScene.SceneType sceneType)
-        {
-            UISceneType = sceneType;
         }
 
         private void AddChild(UIElementBase uiElementBase)
@@ -116,7 +107,7 @@ namespace CoreScript.UIFramework.UIElement
         protected virtual void OnAwake() { }
         protected virtual void Enable() { }
 
-        protected override void BindAfter()
+        protected override void OnPostProcessBinding()
         {
             OnAwake();
         }

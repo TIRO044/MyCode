@@ -9,12 +9,12 @@ namespace MVVM.View.Editor
 
     public static class ViewModelExtension
     {
-        public static void ChangeLobbyTitle(this GameStartViewModel vm, string str)
+        public static void ChangeLobbyTitle(this GameStartViewModelBase vm, string str)
         {
             vm.LobbyTitle = str;
         }
         
-        public static void ChangeLobbyButtonImage(this GameStartViewModel vm, string str)
+        public static void ChangeLobbyButtonImage(this GameStartViewModelBase vm, string str)
         {
             vm.LobbyButtonImage = str;
         }
@@ -29,7 +29,6 @@ namespace MVVM.View.Editor
             window.Show();
         }
 
-        private EditorInvoker _testInvoker = new EditorInvoker();
         void OnGUI()
         {
             if (UIElementManager.OpenedList == null || UIElementManager.OpenedList.Count == 0)
@@ -43,7 +42,7 @@ namespace MVVM.View.Editor
             {
                 foreach (var kv in openedUi.ViewModelProperties)
                 {
-                    if (openedUi.MyViewModel is GameStartViewModel gameStartViewModel)
+                    if (openedUi.MyViewModelBase is GameStartViewModelBase gameStartViewModel)
                     {
                         var propertyName = openedUi.ViewApplierDic[kv.Key].Name;
                         GUILayout.Label(propertyName);

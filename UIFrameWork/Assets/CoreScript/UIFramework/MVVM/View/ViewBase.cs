@@ -4,15 +4,16 @@ using System.ComponentModel;
 using CoreScript.UIFramework.SerializeDictionary;
 using UnityEngine;
 using VContainer;
+using VContainer.Unity;
 
 namespace CoreScript.UIFramework.MVVM.View
 {
     // mono, lifeTime 어떤 걸 상속받을지 고민 중
-    public class View : MonoBehaviour
+    public class ViewBase : MonoBehaviour
     {
         [SerializeField] public SerializableDictionary<string, GameObject> ViewModelProperties = new();
         [SerializeField] public string ViewModelStr;
-        [ReadOnly(true)] public ViewModel.ViewModel MyViewModel { private set; get; }
+        [ReadOnly(true)] public ViewModel.ViewModelBase MyViewModelBase { private set; get; }
        
         public Type MyViewModelType { private set; get; }
 
@@ -36,7 +37,7 @@ namespace CoreScript.UIFramework.MVVM.View
 
             MyViewModelType = type;
 
-            _builder.Register(MyViewModelType, Lifetime.Scoped);
+            var container = _builder.Register(MyViewModelType, Lifetime.Scoped);
             var resolver = _builder.Build();
             var buildObj = resolver.Resolve(MyViewModelType);
             if (buildObj == null)
@@ -45,35 +46,37 @@ namespace CoreScript.UIFramework.MVVM.View
                 return;
             }
             
-            MyViewModel = buildObj as ViewModel.ViewModel;
-            if (MyViewModel == null)
+            MyViewModelBase = buildObj as ViewModel.ViewModelBase;
+            if (MyViewModelBase == null)
             {
                 Debug.LogError($"ViewModel casting fail");
                 return;
             }
 
             // Bind
-            MyViewModel.Bind(OnPropertyChanged);
+            MyViewModelBase.Bind(OnPropertyChanged);
 
-            var propertyInfos = MyViewModel.GetType().GetProperties();
+            var propertyInfos = MyViewModelBase.GetType().GetProperties();
             foreach (var propertyInfo in propertyInfos)
             {
                 var propertyName = propertyInfo.Name;
-                if (ViewModelProperties.TryGetValue(propertyName, out var target))
+                if (!ViewModelProperties.TryGetValue(propertyName, out var target))
                 {
-                    var applier = GetViewApplier(target);
-                    if( applier == null )
-                    {
-                        Debug.Log($"not found applier _ {propertyName}");
-                        continue;
-                    }
-
-                    applier.RegisterViewObject(target);
-                    applier.SetPropertyInfo(propertyInfo);
-                    applier.SetVm(MyViewModel);
-
-                    ViewApplierDic[propertyName] = applier;
+                    continue;
                 }
+                
+                var applier = GetViewApplier(target);
+                if( applier == null )
+                {
+                    Debug.Log($"not found applier _ {propertyName}");
+                    continue;
+                }
+
+                applier.RegisterViewObject(target);
+                applier.SetPropertyInfo(propertyInfo);
+                applier.SetVm(MyViewModelBase);
+
+                ViewApplierDic[propertyName] = applier;
             }
         }
 
@@ -100,14 +103,18 @@ namespace CoreScript.UIFramework.MVVM.View
             MyViewModelType = type;
         }
 
-        public ViewModel.ViewModel GetMyViewModel()
+        public ViewModel.ViewModelBase GetMyViewModel()
         {
-            return MyViewModel;
+            return MyViewModelBase;
         }
 
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (!ViewApplierDic.TryGetValue(e.PropertyName, out var viewApplier)) return;
+            if (!ViewApplierDic.TryGetValue(e.PropertyName, out var viewApplier))
+            {
+                return;
+            }
+            
             if (viewApplier == null)
             {
                 Debug.LogError($"not found view applier");
@@ -120,9 +127,9 @@ namespace CoreScript.UIFramework.MVVM.View
         private void Awake()
         {
             BindViewModel();
-            BindAfter();
+            OnPostProcessBinding();
         }
 
-        protected virtual void BindAfter() { }
+        protected virtual void OnPostProcessBinding() { }
     }
 }
